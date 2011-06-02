@@ -7,87 +7,38 @@
 
 <body>
 	<h1>#{PageTitle}</h1>
-	<div><#
-		var s = 'fuck';
-		'gg';
-		var foo = 'olala';
-		bar = 'lalaoooo';
-		show(s);
-		123;
-	#></div>
-	
-	<div>x1</div>
 	
 	<ul>
-	<# for (var i=0; i<list.length; i++) { &>
-		<li>#{list[i].name} - #{list[i].description}<&
-			if (list[i].list) {
-				&>
-				<ol>
-				<&
-				var listing = list[i].list;
-				for (var n=0; n<listing.length; n++) {
-					&>
-						<li><strong>#{listing[n]}</strong></li>
-					<&
-				}
-				&>
-				</ol>
-				<&
-			}
-		&></li>
-	<& } #>
+	<# for (var i=0; i<List.length; i++) { #>
+		<li>
+			#{List[i].Name} - #{List[i].Description}
+			<# if (List[i].List) { #>
+			<ol>
+				<# var listing = List[i].List; #>
+				<# for (var n=0; n<listing.length; n++) { #>
+				<li><strong>#{listing[n]}</strong></li>
+				<# } #>
+			</ol>
+			<# } #>
+		</li>
+	<# } #>
 	</ul>
 	
-	<div>x2</div>
-	
-	<# if (ShowIf) { show('<div>Print by function show()</div>'); } #>
-	
-	<div>x3</div>
-	
-	<# if (ShowIf) { &><div>Print as pure html</div><& } #>
-	
-	<div>x4</div>
-	
 	<#
-		var str = 'puts';
-		show('testing '+str+' is ok');
+		if (ShowHelloWorld) {
+			show('<div>');
+			show(HelloWorld);
+			show('</div>');
+		}
 	#>
 	
-	<div>x5</div>
+	<#
+		var copyright = '';
+		if (ShowCopyright) {
+			copyright = '<div>&nbsp;<br/>Copyright (c) 2011 Viacheslav Lotsmanov (unclechu)</div>';
+		}
+	#>
 	
-	<# 'test' #>
-	<# 'test' #>
-	<pre><# show(foo) #></pre>
-	<pre><# show(bar) #></pre>
-	
-	<div>x6</div>
-	
-	<div>#{require('fs')}</div>
-	<div>#{;global}</div>
-	<div>#{globals}</div>
-	
-	<div>x7</div>
-	
-	<div>#{show(11);
-	show(22);}</div>
-	
-	<div>x8</div>
-	
-	<div>Y1: #{123;123;show('lal)ala');333;show([555]);show(7);}</div>
-	<div>Y2: #{}</div>
-	<div>Y3: #{1;2}</div>
-	
-	<div>x9</div>
-	<div>#{'what the hell?'}</div>
-	<div>x10</div>
-	<div>#{'what the ';show(1);' hell?'}</div>
-	
-	<pre>#{12312312313;12313}</pre>
-	<pre>#{12312312313;12313;}</pre>
-	<pre>#{1231231231312313;}</pre>
-	<pre>#{;1231231231312313}</pre>
-	<pre>#{1;231231231312313}</pre>
-	<pre>#{1231231231312313}</pre>
+	#{copyright}
 </body>
 </html>
