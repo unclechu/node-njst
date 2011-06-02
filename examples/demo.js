@@ -3,7 +3,7 @@ var fs = require('fs');
 var http = require('http');
 
 http.createServer(function (request, response) {	
-	fs.readFile('../templates/demo.html', function (err, data) {
+	fs.readFile('./templates/demo.html', function (err, data) {
 		if (err) return;
 		
 		var out;
