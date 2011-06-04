@@ -1,10 +1,10 @@
-#nJSt (Native JavaScript Templates) v0.1
+# nJSt (Native JavaScript Templates) v0.1.1
 
-### Installing
+## Installing
 
 	git clone git://github.com/unclechu/njst njst
 
-# USAGE
+## Usage
 
 ### HTML page.html
 
