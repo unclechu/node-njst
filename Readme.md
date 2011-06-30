@@ -16,15 +16,19 @@
 	<body>
 		<h1>#{PageTitle}</h1>
 
-		<# for (var i=0; i<List.length; i++) {
-			#><li><#
-				if (typeof List[i] !== 'object') {
-					show(List[i]);
-				} else {
-					show(List[i].name +' - '+ List[i].note);
-				}
-			#></li><#
-		} #>
+		<ul>
+		<# for (var i=0; i<List.length; i++) { #>
+			<li>
+				<#
+					if (typeof List[i] !== 'object') {
+						show(List[i]);
+					} else {
+						show(List[i].name +' - '+ List[i].note);
+					}
+				#>
+			</li>
+		<# } #>
+		</ul>
 	</body>
 	</html>
 
