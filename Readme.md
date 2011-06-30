@@ -1,4 +1,4 @@
-# nJSt (Native JavaScript Templates) v0.1.2
+# nJSt (Native JavaScript Templates) v0.1.3
 
 ## Installing
 
