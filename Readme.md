@@ -16,6 +16,7 @@
 	<body>
 		<h1>#{PageTitle}</h1>
 
+		<ul>
 		<# for (var i=0; i<List.length; i++) {
 			#><li><#
 				if (typeof List[i] !== 'object') {
@@ -25,6 +26,7 @@
 				}
 			#></li><#
 		} #>
+		</ul>
 	</body>
 	</html>
 
