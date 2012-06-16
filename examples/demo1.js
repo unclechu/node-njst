@@ -4,7 +4,7 @@ var fs = require('fs')
   , njst = require('../lib/njst');
 
 var moduleDirPath = path.dirname(module.filename)
-  , templatePath = path.join(moduleDirPath, './templates/demo2.html');
+  , templatePath = path.join(moduleDirPath, './templates/demo1.html');
 
 var host = null,
 	port = 8000;
@@ -24,28 +24,22 @@ http.createServer(function (request, response) {
 		}
 
 		var out
-		  , download = false
 		  , context;
 
 		context = {
-			PageTitle: 'nJSt demonstration #2',
-			DownloadPage: function () {
-				download = true;
-			}
+			PageTitle: 'nJSt demonstration #1',
+			List: [
+				{Name:'First', Description:'it\'s a first step'},
+				{Name:'Second', Description:'ok, next', List: ['One', 'Two', 'Three']},
+				{Name:'End', Description:'last step'},
+			],
+			ShowCopyright: true,
+			ShowHelloWorld: true,
+			HelloWorld: 'Hello world! Yeah!'
 		};
 
-		out = njst.parse(data, context);
-
-		if (download) {
-			response.writeHead(200, {
-				'content-type': 'application/octet-stream; charset=utf-8',
-				'content-disposition': 'attachment; filename="page.html"',
-				'accept-ranges': 'bytes',
-				'content-length': Buffer.byteLength(out)
-			});
-		} else {
-			response.writeHead(200, {'content-type':'text/html; charset=utf-8'});
-		}
+		out = njst.parse(data, context, {debug: true});
+		response.writeHead(200, {'content-type':'text/html; charset=utf-8'});
 		response.end(out.toString());
 	});
 }).listen(port, host);

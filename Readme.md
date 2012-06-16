@@ -1,8 +1,8 @@
-# nJSt (Native JavaScript Templates) v0.1.3
+# nJSt (Native JavaScript Templates) v0.2
 
 ## Installing
 
-	git clone git://github.com/unclechu/njst njst
+	npm install njst
 
 ## Usage
 
@@ -34,7 +34,7 @@
 
 ### Node.JS test.js
 
-	var njst = require('./njst');
+	var njst = require('njst');
 	var fs = require('fs');
 	var http = require('http');
 
@@ -44,12 +44,12 @@
 			var out;
 			var context = {
 				PageTitle: 'jJSt demonstration #1',
-				List: ['First', {name:'Second', note:'2th'}, 'Third'],
+				List: ['First', {name:'Second', note:'2th'}, 'Third']
 			};
 
-			out = njst.parse(data, context, {debug:1});
-			response.writeHead(200, {'content-type':'text/html; charset=utf-8'});
-			response.end(out);
+			out = njst.parse(data, context, {debug: true});
+			response.writeHead(200, {'content-type': 'text/html; charset=utf-8'});
+			response.end(out.toString());
 		});
 	}).listen(8000);
 
