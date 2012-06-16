@@ -41,7 +41,7 @@ http.createServer(function (request, response) {
 				'content-type': 'application/octet-stream; charset=utf-8',
 				'content-disposition': 'attachment; filename="page.html"',
 				'accept-ranges': 'bytes',
-				'content-length': Buffer.byteLength(out)
+				'content-length': Buffer.byteLength(out.toString())
 			});
 		} else {
 			response.writeHead(200, {'content-type':'text/html; charset=utf-8'});
