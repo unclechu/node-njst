@@ -1,7 +1,7 @@
 {
 	"name": "njst",
 	"description": "Native JavaScript Templates",
-	"version": "0.2",
+	"version": "0.2.0",
 	"author": "Viacheslav Lotsmanov <lotsmanov89@gmail.com>",
 	"homepage": "https://github.com/unclechu/njst",
 	"repository": {
