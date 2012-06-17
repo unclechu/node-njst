@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>#{PageTitle}</title>
+	<style type="text/css">
+		code {
+			white-space: pre;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>#{PageTitle}</h1>
+	<h2>#{Description}</h2>
+	<ol>
+	<#List.forEach(function (val) {#>
+		<li>
+			<strong>#{val.title}</strong><br/>
+			Command: <code>#{val.command}</code></br>
+			Result: <pre>#{val.result}</pre><br/><br/>
+		</li>
+	<#})#>
+	</ol>
+</body>
+</html>
