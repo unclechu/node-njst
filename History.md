@@ -2,6 +2,10 @@
 
 ## 0.2
 
+### 0.2.1
+
+	- Changed to async-style
+
 ### 0.2.0
 
 	- Returns complex string (property "status" contents "success" or "error")
