@@ -17,18 +17,14 @@
 		<h1>#{PageTitle}</h1>
 
 		<ul>
-		<# for (var i=0; i<List.length; i++) { #>
-			<li>
-				<#
-					if (typeof List[i] !== 'object') {
-						show(List[i]);
-					} else {
-						show(List[i].name +' - '+ List[i].note);
-					}
-				#>
-			</li>
-		<# } #>
+		<# List.forEach(function (item) { #>
+			<li>#{item}</li>
+		<# }) #>
 		</ul>
+		
+		<# if (ShowMessage) { #>
+			<p>nJSt loves you!</p>
+		<# } #>
 	</body>
 	</html>
 
@@ -40,16 +36,21 @@
 
 	http.createServer(function (request, response) {
 		fs.readFile('./page.html', function (err, data) {
-			if (err) return;
-			var out;
+			if (err) {
+				res.writeHead(500, {'content-type': 'text/html; charset=utf-8'});
+				res.end(err.toString());
+			}
+			
 			var context = {
-				PageTitle: 'jJSt demonstration #1',
-				List: ['First', {name:'Second', note:'2th'}, 'Third']
+				PageTitle: 'nJSt demonstration',
+				List: ['One', 'Two', 'Three'],
+				ShowMessage: true
 			};
-
-			out = njst.parse(data, context, {debug: true});
-			response.writeHead(200, {'content-type': 'text/html; charset=utf-8'});
-			response.end(out.toString());
+			
+			njst.render(data, context, {debug: true}, function (err, out) {
+				response.writeHead(200, {'content-type': 'text/html; charset=utf-8'});
+				response.end(out);
+			});
 		});
 	}).listen(8000);
 
