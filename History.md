@@ -4,7 +4,7 @@
 
 ### 0.2.1
 
-	- Changed to async-style
+	- Changed to async-style without backward compatibility (sorry for that guys)
 
 ### 0.2.0
 
