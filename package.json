@@ -1,20 +1,20 @@
 {
-	"name": "njst",
-	"description": "Native JavaScript Templates",
-	"version": "0.2.1",
-	"author": "Viacheslav Lotsmanov <lotsmanov89@gmail.com>",
-	"homepage": "https://github.com/unclechu/njst",
-	"repository": {
-		"type": "git",
-		"url": "git://github.com/unclechu/njst.git"
-	},
-	"directories": {
-		"lib": "./lib",
-		"examples": "./examples",
-		"templates": "./templates"
-	},
-	"engines": {
-		"node": ">=0.8.14"
-	},
-	"main": "lib/njst"
+    "name": "njst",
+    "description": "Native JavaScript Templates",
+    "version": "0.2.1",
+    "author": "Viacheslav Lotsmanov <lotsmanov89@gmail.com>",
+    "homepage": "https://github.com/unclechu/njst",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/unclechu/njst.git"
+    },
+    "directories": {
+        "lib": "./lib",
+        "examples": "./examples",
+        "templates": "./templates"
+    },
+    "engines": {
+        "node": ">=0.8.14"
+    },
+    "main": "lib/njst"
 }

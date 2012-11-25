@@ -19,52 +19,52 @@ var port = 8000;
 
 //support Cloud9 IDE
 process.argv.forEach(function (val) {
-	if (val == '-c9ide') {
-		host = '0.0.0.0';
-		port = process.env.PORT;
-	}
+    if (val == '-c9ide') {
+        host = '0.0.0.0';
+        port = process.env.PORT;
+    }
 });
 
 http.createServer(function (request, response) {
-	fs.readFile(templatePath, function (err, data) {
-		if (err) {
-			response.writeHead(500, {'content-type': 'text/html; charset=utf-8'});
-			response.end(err.toString());
-		}
+    fs.readFile(templatePath, function (err, data) {
+        if (err) {
+            response.writeHead(500, {'content-type': 'text/html; charset=utf-8'});
+            response.end(err.toString());
+        }
 
-		var context = {
-			PageTitle: 'nJSt demonstration',
-			List: [
-				{
-					Name: 'First',
-					Text: 'Hello world!'
-				},
-				{
-					Name: 'Second',
-					Text: 'Next?',
-					SubList: [
-						'One',
-						'Two',
-						'Three'
-					]
-				},
-				{
-					Name: 'End',
-					Text: 'Last of this list.'
-				}
-			],
-			ShowCopyright: true
-		};
-		
-		njst.render(data, context, {debug: true}, function (err, out) {
-			if (err) {
-				response.writeHead(500, {'content-type': 'text/html; charset=utf-8'});
-				response.end(err.toString());
-				return;
-			}
-			
-			response.writeHead(200, {'content-type': 'text/html; charset=utf-8'});
-			response.end(out);
-		});
-	});
+        var context = {
+            PageTitle: 'nJSt demonstration',
+            List: [
+                {
+                    Name: 'First',
+                    Text: 'Hello world!'
+                },
+                {
+                    Name: 'Second',
+                    Text: 'Next?',
+                    SubList: [
+                        'One',
+                        'Two',
+                        'Three'
+                    ]
+                },
+                {
+                    Name: 'End',
+                    Text: 'Last of this list.'
+                }
+            ],
+            ShowCopyright: true
+        };
+
+        njst.render(data, context, {debug: true}, function (err, out) {
+            if (err) {
+                response.writeHead(500, {'content-type': 'text/html; charset=utf-8'});
+                response.end(err.toString());
+                return;
+            }
+
+            response.writeHead(200, {'content-type': 'text/html; charset=utf-8'});
+            response.end(out);
+        });
+    });
 }).listen(port, host);
