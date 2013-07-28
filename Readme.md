@@ -1,5 +1,9 @@
 # nJSt (Native JavaScript Templates) v0.2.1
 
+## !!!WARNING!!!
+
+Now project is frozen. See for https://github.com/visionmedia/ejs
+
 ## Installing
 
     npm install njst
