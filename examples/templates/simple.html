@@ -1,30 +1,30 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>#{PageTitle}</title>
+    <title>%{PageTitle}</title>
 </head>
 
 <body>
-    <h1>#{PageTitle}</h1>
+    <h1>%{PageTitle}</h1>
 
     <ul>
-    <# List.forEach(function (item) { #>
+    <% List.forEach(function (item) { %>
         <li>
-            #{item.Name} - #{item.Text}
-            <# if (item.SubList) { #>
+            %{item.Name} - %{item.Text}
+            <% if (item.SubList) { %>
             <ol>
-            <# item.SubList.forEach(function (subItem) { #>
-                <li><strong>#{subItem}</strong></li>
-            <# }) #>
+            <% item.SubList.forEach(function (subItem) { %>
+                <li><strong>%{subItem}</strong></li>
+            <% }) %>
             </ol>
-            <# } #>
+            <% } %>
         </li>
-    <# }) #>
+    <% }) %>
     </ul>
 
-    <# if (ShowCopyright) { #>
+    <% if (ShowCopyright) { %>
         <p>Copyright &copy; 2012, Viacheslav Lotsmanov (unclechu)</p>
-    <# } #>
+    <% } %>
 </body>
 </html>
