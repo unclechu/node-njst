@@ -1,30 +1,33 @@
-# nJSt (Native JavaScript Templates)
+nJSt (Native JavaScript Templates)
+==================================
 
-## Installing
+Installing
+----------
 
     npm install njst
 
-## Usage
+Usage
+-----
 
 ### HTML page.html
 
     <html>
     <head>
-        <title>#{PageTitle}</title>
+        <title>%{PageTitle}</title>
     </head>
 
     <body>
-        <h1>#{PageTitle}</h1>
+        <h1>%{PageTitle}</h1>
 
         <ul>
-        <# List.forEach(function (item) { #>
-            <li>#{item}</li>
-        <# }) #>
+        <% List.forEach(function (item) { %>
+            <li>%{item}</li>
+        <% }) %>
         </ul>
 
-        <# if (ShowMessage) { #>
+        <% if (ShowMessage) { %>
             <p>nJSt loves you!</p>
-        <# } #>
+        <% } %>
     </body>
     </html>
 
@@ -54,10 +57,12 @@
         });
     }).listen(8000);
 
-## Author
+Authors
+-------
 
 Viacheslav Lotsmanov (unclechu)
 
-## See also
+See also
+--------
 
 https://github.com/visionmedia/ejs
