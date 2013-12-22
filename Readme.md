@@ -1,8 +1,4 @@
-# nJSt (Native JavaScript Templates) v0.2.1
-
-## !!!WARNING!!!
-
-Now project is frozen. See for https://github.com/visionmedia/ejs
+# nJSt (Native JavaScript Templates)
 
 ## Installing
 
@@ -61,3 +57,7 @@ Now project is frozen. See for https://github.com/visionmedia/ejs
 ## Author
 
 Viacheslav Lotsmanov (unclechu)
+
+## See also
+
+https://github.com/visionmedia/ejs

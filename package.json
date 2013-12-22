@@ -2,7 +2,8 @@
     "name": "njst",
     "description": "Native JavaScript Templates",
     "version": "0.2.1",
-    "author": "Viacheslav Lotsmanov <lotsmanov89@gmail.com>",
+    "license": "GPLv3",
+    "author": "Viacheslav Lotsmanov (unclechu)",
     "homepage": "https://github.com/unclechu/njst",
     "repository": {
         "type": "git",
@@ -14,7 +15,10 @@
         "templates": "./templates"
     },
     "engines": {
-        "node": ">=0.8.14"
+        "node": ">=0.10.0"
+    },
+    "bugs": {
+        "url": "https://github.com/unclechu/njst/issues"
     },
     "main": "lib/njst"
 }
