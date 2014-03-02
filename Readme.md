@@ -9,53 +9,57 @@ Installing
 Usage
 -----
 
-### HTML page.html
+### template.html
 
     <html>
     <head>
-        <title>%{PageTitle}</title>
+        <title>%{page_title}</title>
     </head>
 
     <body>
-        <h1>%{PageTitle}</h1>
+        <h1>%{page_title}</h1>
 
         <ul>
-        <% List.forEach(function (item) { %>
+        <% list.forEach(function (item) { %>
             <li>%{item}</li>
         <% }) %>
         </ul>
 
-        <% if (ShowMessage) { %>
+        <% if (show_message) { %>
             <p>nJSt loves you!</p>
         <% } %>
     </body>
     </html>
 
-### Node.JS test.js
+### test.js
 
-    var njst = require('njst');
-    var fs = require('fs');
+    var path = require('path');
     var http = require('http');
+    var njst = require('njst');
+
+    var template = new njst();
 
     http.createServer(function (request, response) {
-        fs.readFile('./page.html', function (err, data) {
+        var context = {
+            page_title: 'nJSt demonstration',
+            list: ['foo', 'bar', 'foobar'],
+            show_message: true
+        };
+
+        template.renderFile(path.join(path.dirname(module.filename), 'template'), context, function (err, out) {
             if (err) {
-                res.writeHead(500, {'content-type': 'text/html; charset=utf-8'});
-                res.end(err.toString());
+                res.writeHead(500, {'Content-Type': 'text/plain; charset=utf-8'});
+                res.end( err.toString() );
             }
 
-            var context = {
-                PageTitle: 'nJSt demonstration',
-                List: ['One', 'Two', 'Three'],
-                ShowMessage: true
-            };
-
-            njst.render(data, context, {debug: true}, function (err, out) {
-                response.writeHead(200, {'content-type': 'text/html; charset=utf-8'});
-                response.end(out);
-            });
+            response.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
+            response.end(out);
         });
     }).listen(8000);
+
+### Run
+
+    node ./test.js
 
 Authors
 -------

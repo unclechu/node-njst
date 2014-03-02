@@ -1,20 +1,20 @@
-<#if (params.debug) {#><pre>
+<% if (params.debug) { %><pre>
 
-    nJSt #{errorTitle.toLowerCase()}: #{errorMessage}<#
+    nJSt %{error.title.toLowerCase()}: %{error.message}<%
         if (initLog.length > 0) show('\n\tInit log:');
-        initLog.forEach(function (val) {
+        init_log.forEach(function (val) {
             show('\n\t\t' + val + '');
         });
-    #>
+    %>
     Error:
-        #{error}
+        %{error.trace}
 
-</pre><#} else if (params.liteDebug) {#><pre>
+</pre><% } else if (params.liteDebug) { %><pre>
 
-    nJSt #{errorTitle.toLowerCase()}: #{errorMessage}
+    nJSt %{error.title.toLowerCase()}: %{error.message}
 
-</pre><#} else {#>
+</pre><% } else { %>
 
-    Template #{errorTitle}.
+    Template %{error.title}.
 
-<#}#>
+<% } %>

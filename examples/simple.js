@@ -1,70 +1,77 @@
 #!/usr/bin/env node
 
-/**
- * nJSt Demonstration - simple template:
- * Display of values;
- * Arrays and key-value objects in context and loops in templates.
+/*!
+ * nJSt demonstration
+ * Usage example
  */
 
-var fs = require('fs');
 var path = require('path');
 var http = require('http');
-var njst = require('../lib/njst');
-
-var moduleDirPath = path.dirname(module.filename);
-var templatePath = path.join(moduleDirPath, './templates/simple.html');
+var njst = require('../');
 
 var host = null;
 var port = 8000;
 
-//support Cloud9 IDE
+/**
+ * For Cloud9 IDE
+ * If you run this on Cloud9 IDE -
+ *   you should to start this script with --c9ide argument
+ */
 process.argv.forEach(function (val) {
-    if (val == '-c9ide') {
+    if (val == '--c9ide') {
         host = '0.0.0.0';
         port = process.env.PORT;
     }
 });
 
+var template = new njst({
+    templateFilesDir: path.join(path.dirname(module.filename), 'templates')
+});
+
+var context = {
+    page_title: 'nJSt demonstration',
+    list: [
+        {
+            name: 'foo',
+            text: 'hello world!'
+        },
+        {
+            name: 'bar',
+            text: 'njst demonstration',
+            sublist: [
+                'one',
+                'two',
+                'three'
+            ]
+        },
+        {
+            name: 'last',
+            text: 'last of this list'
+        }
+    ],
+    show_counter: true,
+    counter: 0
+};
+
 http.createServer(function (request, response) {
-    fs.readFile(templatePath, function (err, data) {
+    context.counter += 1;
+    template.renderFile('simple', context, {debug: true}, function (err, out) {
         if (err) {
-            response.writeHead(500, {'content-type': 'text/html; charset=utf-8'});
-            response.end(err.toString());
+            response.writeHead(500, {'Content-Type': 'text/plain; charset=utf-8'});
+            var errMessage = (err.message) ? '\n'+err.message : '';
+            if (err instanceof template.exceptions.TemplateFileIsNotExists) {
+                response.end('Server error: template file is not exists.' + errMessage);
+            } else if (err instanceof template.exceptions.ReadTemplateFileError) {
+                response.end('Server error: cannot read template file.' + errMessage);
+            } else if (err instanceof template.exceptions.ParseTemplateSyntaxError) {
+                response.end('Server error: parse template syntax error.' + errMessage);
+            } else {
+                response.end('Server error: unknown template render error.' + errMessage);
+            }
+            return;
         }
 
-        var context = {
-            PageTitle: 'nJSt demonstration',
-            List: [
-                {
-                    Name: 'First',
-                    Text: 'Hello world!'
-                },
-                {
-                    Name: 'Second',
-                    Text: 'Next?',
-                    SubList: [
-                        'One',
-                        'Two',
-                        'Three'
-                    ]
-                },
-                {
-                    Name: 'End',
-                    Text: 'Last of this list.'
-                }
-            ],
-            ShowCopyright: true
-        };
-
-        njst.render(data, context, {debug: true}, function (err, out) {
-            if (err) {
-                response.writeHead(500, {'content-type': 'text/html; charset=utf-8'});
-                response.end(err.toString());
-                return;
-            }
-
-            response.writeHead(200, {'content-type': 'text/html; charset=utf-8'});
-            response.end(out);
-        });
+        response.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
+        response.end(out);
     });
 }).listen(port, host);
