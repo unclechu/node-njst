@@ -64,7 +64,7 @@ Usage
 More examples
 -------------
 
-`node ./examples/simple.js`
+[Simple](examples/simple.js)
 
 Authors
 -------
