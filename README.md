@@ -61,6 +61,11 @@ Usage
 
     node ./test.js
 
+More examples
+-------------
+
+`node ./examples/simple.js`
+
 Authors
 -------
 
