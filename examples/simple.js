@@ -53,25 +53,25 @@ var context = {
     counter: 0
 };
 
-http.createServer(function (request, response) {
+http.createServer(function (req, res) {
     context.counter += 1;
     template.renderFile('simple', context, {debug: true}, function (err, out) {
         if (err) {
-            response.writeHead(500, {'Content-Type': 'text/plain; charset=utf-8'});
+            res.writeHead(500, {'Content-Type': 'text/plain; charset=utf-8'});
             var errMessage = (err.message) ? '\n'+err.message : '';
             if (err instanceof template.exceptions.TemplateFileIsNotExists) {
-                response.end('Server error: template file is not exists.' + errMessage);
+                res.end('Server error: template file is not exists.' + errMessage);
             } else if (err instanceof template.exceptions.ReadTemplateFileError) {
-                response.end('Server error: cannot read template file.' + errMessage);
+                res.end('Server error: cannot read template file.' + errMessage);
             } else if (err instanceof template.exceptions.ParseTemplateSyntaxError) {
-                response.end('Server error: parse template syntax error.' + errMessage);
+                res.end('Server error: parse template syntax error.' + errMessage);
             } else {
-                response.end('Server error: unknown template render error.' + errMessage);
+                res.end('Server error: unknown template render error.' + errMessage);
             }
             return;
         }
 
-        response.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
-        response.end(out);
+        res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
+        res.end(out);
     });
 }).listen(port, host);
