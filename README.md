@@ -69,7 +69,7 @@ More examples
 Authors
 -------
 
-Viacheslav Lotsmanov (unclechu)
+Viacheslav Lotsmanov
 
 See also
 --------
