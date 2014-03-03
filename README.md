@@ -9,7 +9,7 @@ Installing
 Usage
 -----
 
-### template.html
+### template.njst
 
     <html>
     <head>
