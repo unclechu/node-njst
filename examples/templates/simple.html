@@ -12,12 +12,12 @@
     <% list.forEach(function (item) { %>
         <li>
             %{item.name} - %{item.text}
-            <% if (item.SubList) { %>
-            <ol>
-            <% item.sublist.forEach(function (subItem) { %>
-                <li><strong>%{subItem}</strong></li>
-            <% }) %>
-            </ol>
+            <% if (item.sublist) { %>
+                <ol>
+                <% item.sublist.forEach(function (subitem) { %>
+                    <li><strong>%{subitem}</strong></li>
+                <% }) %>
+                </ol>
             <% } %>
         </li>
     <% }) %>
