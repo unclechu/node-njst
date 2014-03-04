@@ -40,7 +40,7 @@ Usage
     var template = new njst();
     var templateFilePath = path.join(path.dirname(module.filename), 'template');
 
-    http.createServer(function (request, response) {
+    http.createServer(function (req, res) {
         var context = {
             page_title: 'nJSt demonstration',
             list: ['foo', 'bar', 'foobar'],
@@ -53,8 +53,8 @@ Usage
                 res.end( err.toString() );
             }
 
-            response.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
-            response.end(out);
+            res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
+            res.end(out);
         });
     }).listen(8000);
 
