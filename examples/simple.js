@@ -55,7 +55,7 @@ var context = {
 
 http.createServer(function (req, res) {
     context.counter += 1;
-    template.renderFile('simple', context, {debug: true}, function (err, out) {
+    template.renderFile('simple', context, function (err, out) {
         if (err) {
             res.writeHead(500, {'Content-Type': 'text/plain; charset=utf-8'});
             var errMessage = (err.message) ? '\n'+err.message : '';
